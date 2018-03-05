@@ -49,6 +49,7 @@ public class Start extends javax.swing.JFrame {
         exitButton.setForeground(new java.awt.Color(255, 255, 255));
         exitButton.setText("Exit");
         exitButton.setBorderPainted(false);
+        exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);

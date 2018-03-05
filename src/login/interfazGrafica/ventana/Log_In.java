@@ -275,8 +275,11 @@ public class Log_In extends javax.swing.JFrame {
     private javax.swing.JTextField userField;
     // End of variables declaration                   
     private DBQuery con;
+
     
     
+
+
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
     

@@ -56,7 +56,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         this.informacion=Informacion;
         this.directorio=directorio;
         canciones=Canciones;
-        
+        selectFile.setVisible(isAdmin);
         songs=new ArrayList<String>();
         artistas=new ArrayList<String>();
         albumes=new ArrayList<String>();
@@ -91,15 +91,11 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jTable1.setAutoCreateRowSorter(true);
         jTable1.addMouseListener(new MouseAdapter(){
              public void mouseClicked(java.awt.event.MouseEvent e) {
-                if(e.getClickCount()==1){
-                     System.out.println("Se ha hecho un click");
-                }
                 if(e.getClickCount()==2){
                     play.setVisible(false);
                     pause.setVisible(true);
                     procesos.stop();
                     procesos.play(direccionPlayer);
-                    System.out.println("Se ha hecho doble click");
                 }
              }});
         ListSelectionModel model=jTable1.getSelectionModel();
@@ -110,7 +106,6 @@ public class InterfazReproductor extends javax.swing.JFrame {
                     int row=jTable1.getSelectedRow();
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
                 }
-                indiceObtenido=getIndex(datoSeleccionado,0);
                 songAsociadosADetalles=new ArrayList<String>();
                 List<Integer>m=getCanciones(datoSeleccionado[0], 0);
                     for(Integer c:m){
@@ -121,6 +116,8 @@ public class InterfazReproductor extends javax.swing.JFrame {
                         }
                         
                     }
+                
+                
             }
         });
         Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
@@ -239,7 +236,6 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 if(!model.isSelectionEmpty()){
                     int row=jTable1.getSelectedRow();
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
-                    System.out.println(datoSeleccionado[0]+"898");
                     if(contadoPermitirCambio==0){
                         mostrarCancionesRelacionadas(1);
                         contadoPermitirCambio++;
@@ -380,7 +376,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jTable1.setSelectionBackground(new java.awt.Color(0, 0, 51));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 790, 400));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 790, 400));
 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -705,15 +701,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 };
         jTable1.setModel(Model);
         jTable1.setAutoCreateRowSorter(true);
-        jTable1.addMouseListener(new MouseAdapter(){
-             public void mouseClicked(java.awt.event.MouseEvent e) {
-                if(e.getClickCount()==1){
-                     System.out.println("Se ha hecho un click");
-                }
-                if(e.getClickCount()==2){
-                    System.out.println("Se ha hecho doble click");
-                }
-             }});
+        
         Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
     }
         
@@ -751,8 +739,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private String directorio;
     String[] datoSeleccionado=new String[4];
     private List<String[]> informacion;
-    private int indiceObtenido;
-    private List<String> canciones;
+    private List<String> canciones;//Lista de canciones en el directorio
     private DBQuery query;
     private Object[][] datos;
 
@@ -778,11 +765,10 @@ public class InterfazReproductor extends javax.swing.JFrame {
 
     private int xMouse;
     private int yMouse;
-
     private List<Integer> indicesDecanciones;
     
     
     private boolean permitirCambio=true;
     private int contadoPermitirCambio=0;
-
+    
 }
