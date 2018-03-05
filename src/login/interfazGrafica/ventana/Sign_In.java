@@ -183,16 +183,17 @@ public class Sign_In extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ingrese un email valido", "E-MAIL INVALIDO", JOptionPane.WARNING_MESSAGE);
         }
         
-        if(userField.getText().length()==0 || passwordField.getPassword().length==0 || emailField.getText().length()==0){
+        if(userField.getText().length()==0){
             JOptionPane.showMessageDialog(null, "No ha escrito su nombre de usuario", "Error", JOptionPane.ERROR_MESSAGE);
 
-        }else if(passwordField.getPassword().length==0){
+        }if(passwordField.getPassword().length==0){
             JOptionPane.showMessageDialog(null, "No ha escrito su contraseña", "Error", JOptionPane.ERROR_MESSAGE);
-        }else if(emailField.getText().length()==0){
+        }if(emailField.getText().length()==0){
             JOptionPane.showMessageDialog(null, "No ha escrito su cooreo", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             if(con.isInSignin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
                 con.ingresandoADB(userField.getText(), Password.chartoPass(passwordField.getPassword()), emailField.getText());
+                JOptionPane.showMessageDialog(null, "Felicidades!Te has ingresado exitosamente!!", "Ingresado", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 JOptionPane.showMessageDialog(null, "El nombre de usuario y contraseña ya se encuentran en la base de datos como un solo registro", "Error", JOptionPane.ERROR_MESSAGE);
             }

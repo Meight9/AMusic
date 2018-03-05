@@ -48,6 +48,8 @@ public class InterfazReproductor extends javax.swing.JFrame {
 
         Log_In username = new Log_In();
         userName.setText(username.getUserName());
+        
+        //disableSelectFile(isAdmin);
 
         this.setLocationRelativeTo(null);
 
@@ -93,6 +95,8 @@ public class InterfazReproductor extends javax.swing.JFrame {
                      System.out.println("Se ha hecho un click");
                 }
                 if(e.getClickCount()==2){
+                    play.setVisible(false);
+                    pause.setVisible(true);
                     procesos.stop();
                     procesos.play(direccionPlayer);
                     System.out.println("Se ha hecho doble click");
@@ -308,13 +312,14 @@ public class InterfazReproductor extends javax.swing.JFrame {
         getContentPane().add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 590, -1, -1));
 
         pause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/pause.png"))); // NOI18N
+        pause.setVisible(false);
         pause.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pause.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 pauseMouseReleased(evt);
             }
         });
-        getContentPane().add(pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 590, -1, -1));
+        getContentPane().add(pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 590, -1, -1));
 
         selectFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/selectFile.png"))); // NOI18N
         selectFile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -349,6 +354,16 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel2.setText("The best way");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, -1));
 
+        jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+
+        jTable1.setBackground(new java.awt.Color(0, 0, 0));
+        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -360,6 +375,9 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
+        jTable1.setRowHeight(30);
+        jTable1.setSelectionBackground(new java.awt.Color(0, 0, 51));
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 790, 400));
@@ -480,10 +498,14 @@ public class InterfazReproductor extends javax.swing.JFrame {
     }//GEN-LAST:event_stopMouseReleased
 
     private void playMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playMouseReleased
+        play.setVisible(false);
+        pause.setVisible(true);
         procesos.resume();
     }//GEN-LAST:event_playMouseReleased
 
     private void pauseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pauseMouseReleased
+        pause.setVisible(false);
+        play.setVisible(true);
         procesos.pause();
     }//GEN-LAST:event_pauseMouseReleased
 
